@@ -1,0 +1,12 @@
+e:
+cd E:\code
+mkdir wpShop
+cd wpShop
+npm init
+bower init
+cd ../wpShop1
+npm init
+cd ../wpShop
+bower install bootstrap --save
+bower install angular angular-route --save
+doskey /history >> cmd.log

@@ -1,0 +1,30 @@
+{
+  "name": "wpShop",
+  "description": "这是王佩写的第一个node商城",
+  "main": "index.js",
+  "authors": [
+    "wangpei"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "net",
+    "shop"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7"
+  }
+}

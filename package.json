@@ -1,0 +1,25 @@
+{
+  "name": "wpShop",
+  "version": "1.0.0",
+  "description": "这是王佩写的第一个node商城",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangdson/wpShop"
+  },
+  "keywords": [
+    "wang1515"
+  ],
+  "author": "wangpei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangdson/wpShop/issues"
+  },
+  "homepage": "https://github.com/wangdson/wpShop",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

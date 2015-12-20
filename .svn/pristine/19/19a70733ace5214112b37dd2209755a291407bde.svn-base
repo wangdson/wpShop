@@ -1,0 +1,83 @@
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">注册</h3>
+        </div>
+        <form action="" ng-submit="save()" novalidate class="form-horizontal" name="userform" role="form">
+           <div class="panel-body">
+             <div class="form-group row" ng-class="{'has-error':userform.username.$dirty && userform.username.$invalid}">
+                 <label for="username" class="control-label col-sm-offset-3 col-sm-2 ool-md-offset-3 col-md-2 text-right">用户名：</label>
+                 <div class="input-group col-sm-4">
+                     <div class="input-group-addon">
+                         <span class="glyphicon glyphicon-user"></span>
+                     </div>
+                     <input type="text" class="form-control" id="username" name="username" ng-model="user.username" placeholder="请输入用户名" ng-pattern="/[\u4e00-\u9fa5]/" ng-required/>
+                 </div>
+                 <div class="input-group col-sm-offset-5 col-sm-2">
+                     <span style="color:red" ng-show="userform.username.$dirty && userform.username.$invalid">
+                       <span ng-show="userform.username.$error.required">用户名不能为空</span>
+                       <span ng-show="userform.username.$error.pattern">用户名只能输入中文</span>
+                     </span>
+                 </div>
+
+             </div>
+               <div class="form-group row" ng-class="{'has-error':userform.email.$dirty && userform.email.$invalid}">
+                   <label for="email" class="control-label col-sm-offset-3 col-sm-2 ool-md-offset-3 col-md-2 text-right">邮箱：</label>
+                   <div class="input-group col-sm-4">
+                       <div class="input-group-addon">
+                           <span class="glyphicon glyphicon-envelope"></span>
+                       </div>
+                       <input type="email" id="email" class="form-control" name="email" ng-model="user.email" ng-required placeholder="请输入邮箱"/>
+                   </div>
+                   <div class="input-group col-sm-offset-5 col-sm-2">
+                     <span style="color:red" ng-show="userform.email.$dirty && userform.email.$invalid">
+                       <span ng-show="userform.email.$error.required">邮箱不能为空</span>
+                       <span ng-show="userform.email.$error.email">非法的邮箱</span>
+                     </span>
+                   </div>
+
+               </div>
+               <div class="form-group row" ng-class="{'has-error':userform.password.$dirty && userform.password.$invalid}">
+                   <label for="password" class="control-label col-sm-offset-3 col-sm-2 ool-md-offset-4 col-md-2 text-right">密码：</label>
+                   <div class="input-group col-sm-4">
+                       <div class="input-group-addon">
+                           <span class="glyphicon glyphicon-lock"></span>
+                       </div>
+                       <input type="password" id="password" class="form-control" name="password" ng-model="user.password" placeholder="请输入6到12位的密码" ng-required ng-minlength="6" ng-maxlength="12"/>
+
+                   </div>
+                   <div class="input-group col-sm-offset-5 col-sm-2">
+                     <span style="color:red" ng-show="userform.password.$dirty && userform.password.$invalid">
+                       <span ng-show="userform.password.$error.required">密码不能为空</span>
+                       <span ng-show="userform.password.$error.minlength">密码长度不足6位</span>
+                       <span ng-show="userform.password.$error.maxlength">密码长度大于12位</span>
+                     </span>
+                   </div>
+
+               </div>
+               <div class="form-group row" ng-class="{'has-error':userform.repassword.$dirty && userform.repassword.$invalid}">
+                   <label for="repassword" class="control-label col-sm-offset-3 col-sm-2 ool-md-offset-4 col-md-2 text-right">重复密码：</label>
+                   <div class="input-group col-sm-4">
+                       <div class="input-group-addon">
+                           <span class="glyphicon glyphicon-lock"></span>
+                       </div>
+                       <input type="password" id="repassword" name="repassword" class="form-control" ng-model="user.repassword" placeholder="请输入6到12位的密码" ng-required ng-minlength="6" ng-maxlength="12"/>
+                   </div>
+                   <div class="input-group col-sm-offset-5 col-sm-2">
+                     <span style="color:red" ng-show="userform.repassword.$dirty && userform.repassword.$invalid">
+                       <span ng-show="userform.repassword.$error.required">密码不能为空</span>
+                       <span ng-show="userform.repassword.$error.minlength">密码长度不足6位</span>
+                       <span ng-show="userform.repassword.$error.maxlength">密码长度大于12位</span>
+                     </span>
+                   </div>
+
+               </div>
+           </div>
+            <div class="panel-footer clearfix">
+                <div class="col-sm-offset-5 col-sm-1">
+                    <button type="submit" class="btn btn-lg btn-primary" ng-disabled="userform.$invalid ||user.password != user.repassword">注册</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

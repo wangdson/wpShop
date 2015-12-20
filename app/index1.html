@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="public/lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<div>
+<script src="public/lib/jquery/dist/jquery.min.js"></script>
+<script src="public/lib/angular/angular.min.js"></script>
+<script src="public/lib/angular-route/angular-route.min.js"></script>
+<script src="public/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top" role=""></nav>
+<script>
+    var con = '[{"couponsNum":1,"price":20,"seller":"123","type":"满55元送20元"}]';
+    console.log(escape(con))
+    var value="01";
+    //var reg = new RegExp("^[1-9][0-9]*$");
+    var reg =  /^([1-9][\d]{0,7})(\.[\d]{1,2})?$/;
+    if((!reg.test(value))){
+        //alert("请输入正确的数值!");
+        //obj.value="1";
+    }
+  /*$.ajax({
+      type : "POST",
+      data : {
+          "paymentAmount":"0.01",
+          "ownerId":localStorage.getItem("userId"),
+          "buildingId":7381,
+          "paymentType":2,
+          "paySerNo":	"J2015111111374212505718",
+          t : new Date().getTime()
+      },
+      url : getBasePath()+"/rest/chargeRecordInfo/uploadPaymentRecord",
+      dataType : "xml",
+      cache: false,
+      error : function(xml) {
+          alert("亲，网络似乎开小差了");
+      },
+      success : function(data) {
+          var result = $(data)
+                  .find(
+                  "result")
+                  .text();
+          if (result == 1) {
+              alert("支付成功，等待后台结算！");
+              window.location.href = "../index.html";
+              count = 0;
+          } else {
+              alert("支付失败");
+              count = 0;
+          }
+      }
+  });*/
+</script>
+<!--<div ng-app="" ng-init="names=[{'name':'wang,pei','point':'99'},{'name':'lisi','point':'60'}]">
+   <p>循环列表</p>
+    <ul ng-repeat="x in names">
+        <li>姓名：{{x.name}} -- 成绩：{{x.point}}</li>
+    </ul>
+</div>-->
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+        姓：<input type="text" ng-model="fName">
+        名：<input type="text" ng-model="sName">
+        <br>
+        姓名信息：{{fullName()}}
+        <br>
+        数量：<input type="text" ng-model="num">
+        单价：<input type="text" ng-model="price">
+        <br>
+        <p>总价：{{(num*price) | currency }}</p>
+        <br>
+        <p>输入过滤：</p>
+        <p><input type="text" ng-model="test"></p>
+    <ul>
+        <li ng-repeat="x in names | filter:test | orderBy:'country'">
+            {{(x.name | uppercase)+","+x.country }}
+        </li>
+    </ul>
+    <br/>
+        <ul>
+            <li ng-repeat="nm in values">
+                {{nm.Name + "," + nm.Country}}
+            </li>
+        </ul>
+        <table>
+            <tr ng-repeat="nm in values | orderBy:'country'">
+                <td>{{ $index + 1 }}</td>
+                <td>{{nm.Name}}</td>
+                <td>{{nm.Country | uppercase}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope,$http)
+        {
+            $scope.fName = "王";
+            $scope.sName = "佩";
+            $scope.fullName = function(){
+                return $scope.fName+" - "+$scope.sName;
+            }
+            $scope.num = 5;
+            $scope.price = 9.99;
+            $scope.names=  [
+                {name:'Jani',country:'Norway'},
+                {name:'Hege',country:'Sweden'},
+                {name:'Kai',country:'Denmark'}
+            ];
+            //$http.get() 从web服务器上读取静态 JSON 数据。
+            $http.get("data.json").success(function(response)
+            {
+                $scope.values = response;
+            })
+        });
+
+    </script>
+</body>
+</html>

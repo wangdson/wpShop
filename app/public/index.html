@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body{
+            margin-top:50px;
+        }
+    </style>
+</head>
+<body ng-app="shopApp">
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular-route/angular-route.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavBarCtrl">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand">王的商城</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="#/home">首页</a></li>
+        <li><a href="#/users/reg">注册</a></li>
+        <li><a href="#/users/login">登录</a></li>
+    </ul>
+</nav>
+<div class="row" ng-view>
+
+</div>
+<script>
+  var app = angular.module("shopApp",['ngRoute']);
+    //routeProvider路由配置,locationProvider跳转配置（路径）
+    app.config(function($routeProvider,$locationProvider){
+       $routeProvider.when('/home',{
+           templateUrl:'pages/home.html',
+           controller:'HomeCtrl'
+       }).when('/users/reg',{
+           templateUrl:'pages/user/reg.html',
+           controller:'RegCtrl'
+       }).when('/users/login',{
+           templateUrl:'pages/user/login.html',
+           controller:'LoginCtrl'
+       }).otherwise({
+           redirectTo:'/'
+       });
+    });
+    app.controller("HomeCtrl",function($scope){
+        $scope.title="王的商城";
+    });
+    app.controller("NavBarCtrl",function($scope){
+
+      });
+  app.controller("RegCtrl",function($scope,$http){
+      $scope.title="注册";
+      $scope.save = function(){
+          console.log("----saving----");
+          $http({
+             url:"/users/reg",
+             method:'post',
+             data:$scope.user
+          }).success(function(user){
+
+          }).error(function(data){
+
+          });
+      };
+  });
+  app.controller("LoginCtrl",function($scope){
+      $scope.title="登录";
+  });
+</script>
+</body>
+</html>
